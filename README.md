@@ -2,7 +2,7 @@
 
 # disappearing-text
 A Python and Tkinter-based desktop application designed to help authors with writers block.<br> Once you start the app you can select a prompt if desired (optional) and a session time out (again optional - default is set to 15 seconds), you can begin typing. <br>
-Onve you gave started, if you do not keep typing, then after the selected session time out, number of seconds of inactivity allowed, the text will be deleted. As a warning indication, 10 seconds before the time out the text begins to fade. The app has a selection of starting prompts saved in a text file, which it can randomly serve up as inspiration to start writing.
+Once you have started, if you do not keep typing, then after the selected session time out, number of seconds of inactivity allowed, the text will be deleted. As a warning indication, 10 seconds before the time out the text begins to fade. The app has a selection of starting prompts saved in a text file, which it can randomly serve up as inspiration to start writing.
 
 <img src="src/Writing_App.gif" style="width: 600px; height=400px" alt="starting screen of app"><br>
 Selecting the session time out, (by clicking on the text above the 'Start Writing' button), and generating a random prompt, (by clicking on the 'Generate Prompt' button).
