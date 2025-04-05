@@ -10,7 +10,6 @@ Selecting the session time out, (by clicking on the text above the 'Start Writin
 <br>
 <img src="src/Dont_Stop.gif" style="width: 600px; height=400px" alt="main writting screen with disappearing text"><br>
 Using the 'Don't stop writing' window in the app, as long as you keep typing, then the text remains visible. But if you stop typing, then after a time the text will slowly dim and vanish when the Time Out is reached! An interactive Word count is displayed at the bottom of the screen, and count down timer at the top.
-
 <br>
 
 #
