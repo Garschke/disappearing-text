@@ -48,6 +48,8 @@ Using the 'Don't stop writing' window in the app, as long as you keep typing, th
   - Count down timer to remind you to keep typing.
   - Word count to show progress.
 - Disappearing Text begins to fade 10 seconds prior to Time Out.
+- Saves text to saved_text.txt file on:
+  - Closing of the Text Entry Screen window.
 - Saves text to log file on:
   - Closing of the Text Entry Screen window.
   - At Time Out, after a set time of typing inactivity, selected for the session.
