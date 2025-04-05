@@ -10,7 +10,7 @@ class DisappearingTextApp:
     A GUI application for helping with writers block.
     """
 
-    def __init__(self, root):
+    def __init__(self, root) -> None:
         """
         Initialize the application.
         """
@@ -73,7 +73,7 @@ class DisappearingTextApp:
 
     # --------------------End UI Design ---------------------
 
-    def change_timer(self, event):
+    def change_timer(self, event) -> None:
         """
         Changes the number of seconds for Countdown
         """
@@ -89,11 +89,11 @@ class DisappearingTextApp:
         )
         log.debug(session_time_out)            # **** LOGGING DATA *****
 
-    def new_prompt(self):
+    def new_prompt(self) -> None:
         """
         Create Prompt to start off writing.
         """
-        if (not self.prompts.prompt_list):
+        if (self.prompts.prompt_list_size() == 0):
             self.prompts.load_prompt_list()
 
         self.prompt_text = self.prompts.prompt_text()
@@ -105,7 +105,7 @@ class DisappearingTextApp:
         self.start_btn.config(text='Start Writing')
         self.prompt_label.config(text=self.prompt_text)
 
-    def start_writing(self):
+    def start_writing(self) -> None:
         """
         Open Writing dialog.
         """
@@ -146,7 +146,7 @@ class DisappearingTextApp:
 
     # ------------------- End UI Design ----------------------
 
-        def start_typing(event):
+        def start_typing(event) -> None:
             """
             start typing monitoring
             """
@@ -155,7 +155,7 @@ class DisappearingTextApp:
             pre_cnt = len(characters)
             count_down(TIMER, pre_cnt)
 
-        def count_down(timer_count, pre_cnt):
+        def count_down(timer_count, pre_cnt) -> None:
             """
             count down logic
             """
@@ -202,7 +202,7 @@ class DisappearingTextApp:
 
         self.typing_text.bind("<FocusIn>", start_typing)
 
-        def save_text():
+        def save_text() -> None:
             """
             Save the typed text
             """
@@ -214,7 +214,7 @@ class DisappearingTextApp:
                 with open('saved_text.txt', 'a') as f:
                     f.write(text + '\n')
 
-        def on_close():
+        def on_close() -> None:
             """
             Actions when closing window
             """

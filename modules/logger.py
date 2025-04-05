@@ -7,7 +7,7 @@ import sys
 import os
 
 
-def get_logger(name):
+def get_logger(name) -> logging.Logger:
     """
     Simple logging utility that creates a logger with a specified name
     and log level, and outputs log messages to the console and log file.

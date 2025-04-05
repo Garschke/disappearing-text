@@ -12,7 +12,7 @@ sys.path.append(
 
 
 @pytest.fixture
-def setup_prompts():
+def setup_prompts() -> generator.prompt_generator:
     """
     Fixture to set up the prompt list before each test.
     """
@@ -21,36 +21,37 @@ def setup_prompts():
     return test_prompts
 
 
-def test_load_prompt_list(setup_prompts):
+def test_load_prompt_list(setup_prompts) -> None:
     """
     Test that prompts are loaded correctly into the prompt_list.
     """
     # Verify the prompt list is initially empty
     test = "Prompt list should initially be empty."
-    assert len(setup_prompts.prompt_list) == 0, test
+    assert setup_prompts.prompt_list_size() == 0, test
     # Load the prompt list
     setup_prompts.load_prompt_list()
     # Verify the prompt list is not empty after loading
     test = "Prompt list should not be empty after loading."
-    assert len(setup_prompts.prompt_list) > 0, test
+    assert setup_prompts.prompt_list_size() > 0, test
     # Verify the prompt list is a list
     test = "Prompt list should be a list."
-    assert isinstance(setup_prompts.prompt_list, list), test
+    test_list = setup_prompts.promptlist()
+    assert isinstance(test_list, list), test
     # Verify all prompts are strings
     test = "All prompts should be strings."
     assert all(
-        isinstance(prompt, str) for prompt in setup_prompts.prompt_list
+        isinstance(prompt, str) for prompt in test_list
     ), test
 
 
-def test_prompt_text(setup_prompts):
+def test_prompt_text(setup_prompts) -> None:
     """
     Test that prompt_text returns a valid prompt.
     """
     # Load the prompt list
     setup_prompts.load_prompt_list()
     # Make a copy of the prompt_list before calling prompt_text
-    pre_popped_list = setup_prompts.prompt_list.copy()
+    pre_popped_list = setup_prompts.promptlist().copy()
     # Call prompt_text to get a prompt
     prompt = setup_prompts.prompt_text()
     test = "Generated prompt should be a string."
@@ -59,10 +60,11 @@ def test_prompt_text(setup_prompts):
     assert prompt in pre_popped_list, test
 
 
-def test_prompt_list_is_unique(setup_prompts):
+def test_prompt_list_is_unique(setup_prompts) -> None:
     """
     Test that all prompts in the prompt list are unique.
     """
     test = "Prompt list should not contain duplicates."
-    assert len(
-        setup_prompts.prompt_list) == len(set(setup_prompts.prompt_list)), test
+    assert (
+        len(setup_prompts.promptlist()) ==
+        len(set(setup_prompts.promptlist()))), test
