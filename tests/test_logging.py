@@ -7,9 +7,7 @@ from modules.logger import get_logger
 # Add the project directory to sys.path
 sys.path.append(
     os.path.abspath(
-        os.path.join(
-            os.path.dirname(__file__), '..'
-        )
+        os.path.join(os.path.dirname(__file__), '..')
     )
 )
 

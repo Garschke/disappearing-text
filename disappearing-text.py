@@ -1,7 +1,7 @@
 import tkinter as tk
 from modules.constants import TITLE_FONT, PROMPT_FONT, TEXT_FONT, FONT
 from modules.constants import WBG, PBG, DFC, LFC, TBG, TFC, TIMER, COLORS
-from modules.prompt_generator import prompt_text
+import modules.prompt_generator as generator
 from modules.logger import get_logger
 
 
@@ -19,6 +19,7 @@ class DisappearingTextApp:
         self.root.config(bg=WBG, padx=10, pady=10)
         self.default_text = "Don't stop writing, or all progress will be lost."
         self.prompt_text = ""
+        self.prompts = generator.prompt_generator()
         self.writer_open = False
 
     # -------------------- Root UI Design --------------------
@@ -92,7 +93,10 @@ class DisappearingTextApp:
         """
         Create Prompt to start off writing.
         """
-        self.prompt_text = prompt_text()
+        if (not self.prompts.prompt_list):
+            self.prompts.load_prompt_list()
+
+        self.prompt_text = self.prompts.prompt_text()
         log.debug(f"Generating Prompt: {self.prompt_text}")  # * LOGGING DATA *
         self.title_label.config(
             text="The Most Dangerous Random Prompt Generator"
@@ -194,6 +198,7 @@ class DisappearingTextApp:
                            'TIMED OUT - Close the window and start again.'
                            )
                 )
+                self.typing_text.config(state=tk.DISABLED)
 
         self.typing_text.bind("<FocusIn>", start_typing)
 
@@ -206,6 +211,8 @@ class DisappearingTextApp:
                text != self.prompt_text and
                text[-45:] != 'TIMED OUT - Close the window and start again.'):
                 log.debug(f'Saving Text\n{text}')  # ** LOGGING DATA ***
+                with open('saved_text.txt', 'a') as f:
+                    f.write(text + '\n')
 
         def on_close():
             """
